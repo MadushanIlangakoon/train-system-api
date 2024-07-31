@@ -1,13 +1,24 @@
-const express = require('express');
+// const express = require('express');
 
-const app = express();
-const port = 80;
+// const app = express();
+// const port = 80;
 
-app.get('/', (req, res) => {
-  res.send('Hello, world!');
-});
+// app.get('/', (req, res) => {
+//   res.send('Hello, world!');
+// });
 
-// Start the server and listen on the specified port
+// // Start the server and listen on the specified port
+// app.listen(port, () => {
+//   console.log(`Server is running on http://localhost:${port}`);
+// });
+
+
+
+require('dotenv').config();
+const app = require('./app');
+
+const port = process.env.PORT || 3000;
+
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on port ${port}`);
 });
