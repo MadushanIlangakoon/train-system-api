@@ -8,17 +8,15 @@ const trainRoutes = require('./routes/trainRoutes');
 const app = express();
 
 
-// Database connection
-const dbUrl = process.env.DATABASE;
-mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Database connected successfully'))
-  .catch(err => console.error('Database connection error:', err));
+connectDB();
+
+app.use(bodyParser.json());
 
 // Routes
 app.get('/', (req, res) => {
   res.send('Hello, world!');
 });  
-// Use routes
+
 // Use routes
 app.use('/api', trainRoutes);
 
