@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const connectDB = require('./config/db');
 const mongoose = require('mongoose');
-require('dotenv').config();
+const trainRoutes = require('./routes/trainRoutes');
 
 const app = express();
 
@@ -18,6 +18,9 @@ mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 app.get('/', (req, res) => {
   res.send('Hello, world!');
 });  
+// Use routes
+// Use routes
+app.use('/api', trainRoutes);
 
 // Export the app
 module.exports = app;
