@@ -5,10 +5,12 @@ const connectDB = require('./config/db');
 const mongoose = require('mongoose');
 const trainRoutes = require('./routes/trainRoutes');
 
+const cors = require('cors'); // Import cors
+
 const app = express();
 
-
 connectDB();
+app.use(cors({ origin: 'http://localhost:3000' })); // Enable CORS for requests from http://localhost:3000
 
 app.use(bodyParser.json());
 
