@@ -10,8 +10,8 @@ const cors = require('cors'); // Import cors
 const app = express();
 
 connectDB();
-app.use(cors({ origin: 'http://localhost:3000' })); // Enable CORS for requests from http://localhost:3000
-
+// app.use(cors({ origin: 'http://localhost:3000' })); // Enable CORS for requests from http://localhost:3000
+app.use(cors({ origin: true }));
 app.use(bodyParser.json());
 
 // Routes
