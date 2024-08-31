@@ -45,7 +45,7 @@ app.use(bodyParser.json());
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('Hello, world!');
+  res.send('This software is made by Madushan Ilangakoon');
 });  
 
 // Use routes

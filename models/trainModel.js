@@ -26,19 +26,22 @@ const TrainSchema = new mongoose.Schema({
     type: String, 
     required: false 
   },
-  time_stamp: { 
-    type: String, 
-    required: false 
-  },
+   time_stamp: { 
+     type: Date, 
+     required: false 
+   },
+
   start_location: { 
     type: String, 
     required: false 
   },
   destination: { 
     type: String, 
-    required: false 
+    required: false
   }
 });
+
+TrainSchema.index({ time_stamp: 1 }, { expireAfterSeconds: 7776000 });
 
 const Train = mongoose.model('train', TrainSchema);
 
