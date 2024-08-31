@@ -17,4 +17,8 @@ router.delete('/trains', trainController.deleteTrain);
  // Search for trains by name or destination
 router.get('/trains/search', trainController.searchTrains); 
 
+// Route to get trains grouped by IDs with only recent data
+router.get('/trains/recent', trainController.getTrainsGroupedByIdsWithRecentData);
+
+
 module.exports = router; 

@@ -94,3 +94,31 @@ exports.searchTrains = async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 };
+
+
+// Get all train details grouped by IDs and only recent data
+exports.getTrainsGroupedByIdsWithRecentData = async (req, res) => {
+  try {
+    const trains = await Train.aggregate([
+      {
+        $sort: {
+          time_stamp: -1 // Sort by time_stamp in descending order to get the most recent data first
+        }
+      },
+      {
+        $group: {
+          _id: "$engine_id", // Group by the train's unique ID
+          mostRecentData: { $first: "$$ROOT" } // Get the most recent train document for each group
+        }
+      }
+    ]);
+
+    // Extract the most recent train data from the grouped results
+    const recentTrains = trains.map(group => group.mostRecentData);
+
+    res.status(200).json(recentTrains);
+  } catch (err) {
+    console.error('Error fetching grouped and recent train data:', err.message);
+    res.status(500).json({ message: err.message });
+  }
+};
